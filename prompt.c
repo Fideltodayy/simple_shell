@@ -1,17 +1,19 @@
 #include <stdio.h>
 #include <stdlib.h>
+/* 	This input should be the path to an executable. 
 
+	Return - Always 0.
+*/
 int main(void)
 {
-    char buf[100]; // Set a reasonable initial buffer size
+	size_t n = 0;
+	char *buf = NULL;
 
-    printf("$");
+	printf("Enter your name:");
+	getline(&buf , &n , stdin);
+	printf("Your name is: %s\n", buf);
 
-    if (scanf("%99[^\n]", buf) == 1) {
-        printf("Your name is: %s\n", buf);
-    } else {
-        printf("Error reading input.\n");
-    }
+	free(buf);
 
-    return 0;
+	return(0);
 }
