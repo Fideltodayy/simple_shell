@@ -2,12 +2,10 @@
 
 /**
  * _myexit - exits the shell
- * @inf: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- *  Return: exits with a given exit status
- *         (0) if inf.argv[0] != "exit"
+ * @inf: Structure containing potential arguments. Used to maintain constant function prototype.
+ *  Return: exits with a given exit status (0) if inf.argv[0] != "exit"
  */
-int _myexit(info_t *inf)
+int _myexit(inf_t *inf)
 {
 	int exitcheck;
 
@@ -31,11 +29,10 @@ int _myexit(info_t *inf)
 
 /**
  * _mycd - changes the current directory of the process
- * @inf: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * @inf: Structure containing potential arguments. Used to maintain constant function prototype.
  *  Return: Always 0
  */
-int _mycd(info_t *inf)
+int _mycd(inf_t *inf)
 {
 	char *s, *dir, buffer[1024];
 	int chdir_ret;
@@ -81,16 +78,15 @@ int _mycd(info_t *inf)
 
 /**
  * _myhelp - changes the current directory of the process
- * @inf: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
+ * @inf: Structure containing potential arguments. Used to maintain constant function prototype.
  *  Return: Always 0
  */
-int _myhelp(info_t *inf)
+int _myhelp(inf_t *inf)
 {
 	char **arg_array;
 
 	arg_array = inf->argv;
-	_puts("help call works. Function not yet implemented \n");
+	_puts("help call works. Function is not implemented yet \n");
 	if (0)
 		_puts(*arg_array); /* temp att_unused workaround */
 	return (0);

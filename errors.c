@@ -1,7 +1,7 @@
 #include "shell.h"
 
 /**
- *_eputs - prints an input string
+ *_eputs - prints a string that has been inputed
  * @str: the string to be printed
  *
  * Return: null

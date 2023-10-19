@@ -31,7 +31,7 @@ char *_strncpy(char *destination, char *src, int n)
 }
 
 /**
- **_strncat - concatenates two strings
+ **_strncat - concatenates two strings together
  *@destination: the first string
  *@src: the second string
  *@n: amt of bytes to be maximally used

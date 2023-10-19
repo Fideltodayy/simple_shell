@@ -5,7 +5,7 @@
  * @inf: Structure containing potential arguments. Maintains constant function prototype.
  *  Return: Always 0
  */
-int _myhistory(info_t *inf)
+int _myhistory(inf_t *inf)
 {
 	print_list(inf->history);
 	return (0);
@@ -16,9 +16,9 @@ int _myhistory(info_t *inf)
  * @inf: parameter struct
  * @str: the string alias
  *
- * Return: Always 0 on success, 1 on error
+ * Return: Always 0 on success and value of 1 on error
  */
-int unset_alias(info_t *inf, char *str)
+int unset_alias(inf_t *inf, char *str)
 {
 	char *p, c;
 	int ret;
@@ -36,12 +36,12 @@ int unset_alias(info_t *inf, char *str)
 
 /**
  * set_alias - sets alias to string
- * @inf: parameter structure
+ * @inf: the structure of the parameter
  * @str: the string alias that is to be set
  *
- * Return: Always 0 on success, 1 on error
+ * Return: Always 0 on success and value of 1 on error
  */
-int set_alias(info_t *inf, char *str)
+int set_alias(inf_t *inf, char *str)
 {
 	char *p;
 
@@ -59,9 +59,9 @@ int set_alias(info_t *inf, char *str)
  * print_alias - prints an alias string
  * @node: the alias node
  *
- * Return: Always 0 on success, 1 on error
+ * Return: Always 0 on success and value of 1 on error
  */
-int print_alias(list_t *node)
+int print_alias(list_type *node)
 {
 	char *p = NULL, *a = NULL;
 
@@ -83,11 +83,11 @@ int print_alias(list_t *node)
  * @inf: Structure containing potential arguments. Used to maintain constant function prototype.
  *  Return: Always 0
  */
-int _myalias(info_t *inf)
+int _myalias(inf_t *inf)
 {
 	int i = 0;
 	char *p = NULL;
-	list_t *node = NULL;
+	list_type *node = NULL;
 
 	if (inf->argc == 1)
 	{

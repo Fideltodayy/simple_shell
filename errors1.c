@@ -33,7 +33,7 @@ int _erratoi(char *s)
  * @estr: string containing an error type
  * Return: 0 if no numbers in string, converted number otherwise -1 on error
  */
-void print_error(info_t *inf, char *estr)
+void print_error(inf_t *inf, char *estr)
 {
 	_eputs(inf->fname);
 	_eputs(": ");
