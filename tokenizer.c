@@ -9,7 +9,7 @@
 
 char **strtow(char *str, char *d)
 {
-	int i, j, k, m, num_of_words = 0;
+	int i, j, k, m, numwords = 0;
 	char **s;
 
 	if (str == NULL || str[0] == 0)
@@ -18,14 +18,14 @@ char **strtow(char *str, char *d)
 		d = " ";
 	for (i = 0; str[i] != '\0'; i++)
 		if (!is_delimeter(str[i], d) && (is_delimeter(str[i + 1], d) || !str[i + 1]))
-			num_of_words++;
+			numwords++;
 
-	if (num_of_words == 0)
+	if (numwords == 0)
 		return (NULL);
-	s = malloc((1 + num_of_words) * sizeof(char *));
+	s = malloc((1 + numwords) * sizeof(char *));
 	if (!s)
 		return (NULL);
-	for (i = 0, j = 0; j < num_of_words; j++)
+	for (i = 0, j = 0; j < numwords; j++)
 	{
 		while (is_delimeter(str[i], d))
 			i++;
@@ -56,7 +56,7 @@ char **strtow(char *str, char *d)
  */
 char **strtow2(char *str, char d)
 {
-	int i, j, k, m, num_of_words = 0;
+	int i, j, k, m, numwords = 0;
 	char **s;
 
 	if (str == NULL || str[0] == 0)
@@ -64,13 +64,13 @@ char **strtow2(char *str, char d)
 	for (i = 0; str[i] != '\0'; i++)
 		if ((str[i] != d && str[i + 1] == d) ||
 		    (str[i] != d && !str[i + 1]) || str[i + 1] == d)
-			num_of_words++;
-	if (num_of_words == 0)
+			numwords++;
+	if (numwords == 0)
 		return (NULL);
-	s = malloc((1 + num_of_words) * sizeof(char *));
+	s = malloc((1 + numwords) * sizeof(char *));
 	if (!s)
 		return (NULL);
-	for (i = 0, j = 0; j < num_of_words; j++)
+	for (i = 0, j = 0; j < numwords; j++)
 	{
 		while (str[i] == d && str[i] != d)
 			i++;

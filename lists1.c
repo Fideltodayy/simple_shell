@@ -56,10 +56,10 @@ char **list_typeo_strings(list_type *head)
 
 
 /**
- * print_list - prints all the elements of a list_type linked list
+ * print_list - prints all elements of a list_type linked list
  * @h: pointer to first node
  *
- * Return: size of the list
+ * Return: size of list
  */
 size_t print_list(const list_type *h)
 {
@@ -79,7 +79,7 @@ size_t print_list(const list_type *h)
 }
 
 /**
- * node_starts_with - returns the node whose string starts with prefix
+ * node_starts_with - returns node whose string starts with prefix
  * @node: pointer to list head
  * @prefix: string to match
  * @c: the next character after prefix to match

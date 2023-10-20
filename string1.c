@@ -1,21 +1,21 @@
 #include "shell.h"
 
 /**
- * _strcpy - this func copies a string
+ * _strcpy - copies a string
  * @dest: the destination
- * @source: the source
+ * @src: the source
  *
  * Return: pointer to destination
  */
-char *_strcpy(char *dest, char *source)
+char *_strcpy(char *dest, char *src)
 {
 	int i = 0;
 
-	if (dest == source || source == 0)
+	if (dest == src || src == 0)
 		return (dest);
-	while (source[i])
+	while (src[i])
 	{
-		dest[i] = source[i];
+		dest[i] = src[i];
 		i++;
 	}
 	dest[i] = 0;
@@ -46,7 +46,7 @@ char *_strdup(const char *str)
 }
 
 /**
- *_puts - prints a string that has been inputed
+ *_puts - prints an input string
  *@str: the string to be printed
  *
  * Return: Nothing

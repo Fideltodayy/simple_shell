@@ -3,7 +3,8 @@
 /**
  * _erratoi - converts a string to an integer
  * @s: the string to be converted
- * Return: 0 if no numbers in string, converted number otherwise -1 on error
+ * Return: 0 if no numbers in string, converted number otherwise
+ *       -1 on error
  */
 int _erratoi(char *s)
 {
@@ -11,7 +12,7 @@ int _erratoi(char *s)
 	unsigned long int result = 0;
 
 	if (*s == '+')
-		s++; 
+		s++;  /* TODO: why does this make main return 255? */
 	for (i = 0;  s[i] != '\0'; i++)
 	{
 		if (s[i] >= '0' && s[i] <= '9')
@@ -29,27 +30,28 @@ int _erratoi(char *s)
 
 /**
  * print_error - prints an error message
- * @inf: the parameter & return inf structure
- * @estr: string containing an error type
- * Return: 0 if no numbers in string, converted number otherwise -1 on error
+ * @info: the parameter & return info struct
+ * @estr: string containing specified error type
+ * Return: 0 if no numbers in string, converted number otherwise
+ *        -1 on error
  */
-void print_error(inf_t *inf, char *estr)
+void print_error(info_type *info, char *estr)
 {
-	_eputs(inf->fname);
+	_eputs(info->fname);
 	_eputs(": ");
-	print_d(inf->line_count, STDERR_FILENO);
+	print_d(info->line_count, STDERR_FILENO);
 	_eputs(": ");
-	_eputs(inf->argv[0]);
+	_eputs(info->argv[0]);
 	_eputs(": ");
 	_eputs(estr);
 }
 
 /**
- * print_d - prints a decimal number
- * @input:  input
- * @fd:  filedescriptor to write to
+ * print_d - function prints a decimal (integer) number (base 10)
+ * @input: the input
+ * @fd: the filedescriptor to write to
  *
- * Return: no of characters printed
+ * Return: number of characters printed
  */
 int print_d(int input, int fd)
 {
@@ -84,7 +86,7 @@ int print_d(int input, int fd)
 }
 
 /**
- * convert_number - a converter function, a copycat of itoa
+ * convert_number - converter function, a clone of itoa
  * @num: number
  * @base: base
  * @flags: argument flags
@@ -120,19 +122,19 @@ char *convert_number(long int num, int base, int flags)
 }
 
 /**
- * remove_comments - This function replaces the first instance of '#' with '\0'
- * @buffer: address of the string to modify
+ * remove_comments - function replaces first instance of '#' with '\0'
+ * @buf: address of the string to modify
  *
  * Return: Always 0;
  */
-void remove_comments(char *buffer)
+void remove_comments(char *buf)
 {
 	int i;
 
-	for (i = 0; buffer[i] != '\0'; i++)
-		if (buffer[i] == '#' && (!i || buffer[i - 1] == ' '))
+	for (i = 0; buf[i] != '\0'; i++)
+		if (buf[i] == '#' && (!i || buf[i - 1] == ' '))
 		{
-			buffer[i] = '\0';
+			buf[i] = '\0';
 			break;
 		}
 }

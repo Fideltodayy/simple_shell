@@ -7,21 +7,21 @@
  * Return: allocated string containg history file
  */
 
-char *get_history_file(inf_t *info)
+char *get_history_file(info_type *info)
 {
-	char *buff, *dir;
+	char *buf, *dir;
 
 	dir = _getenv(info, "HOME=");
 	if (!dir)
 		return (NULL);
-	buff = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
-	if (!buff)
+	buf = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
+	if (!buf)
 		return (NULL);
-	buff[0] = 0;
-	_strcpy(buff, dir);
-	_strcat(buff, "/");
-	_strcat(buff, HIST_FILE);
-	return (buff);
+	buf[0] = 0;
+	_strcpy(buf, dir);
+	_strcat(buf, "/");
+	_strcat(buf, HIST_FILE);
+	return (buf);
 }
 
 /**
@@ -30,7 +30,7 @@ char *get_history_file(inf_t *info)
  *
  * Return: 1 on success, else -1
  */
-int write_history(inf_t *info)
+int write_history(info_type *info)
 {
 	ssize_t fd;
 	char *filename = get_history_file(info);
@@ -59,12 +59,12 @@ int write_history(inf_t *info)
  *
  * Return: histcount on success, 0 otherwise
  */
-int read_history(inf_t *info)
+int read_history(info_type *info)
 {
 	int i, last = 0, linecount = 0;
 	ssize_t fd, rdlen, fsize = 0;
 	struct stat st;
-	char *buff = NULL, *filename = get_history_file(info);
+	char *buf = NULL, *filename = get_history_file(info);
 
 	if (!filename)
 		return (0);
@@ -77,24 +77,24 @@ int read_history(inf_t *info)
 		fsize = st.st_size;
 	if (fsize < 2)
 		return (0);
-	buff = malloc(sizeof(char) * (fsize + 1));
-	if (!buff)
+	buf = malloc(sizeof(char) * (fsize + 1));
+	if (!buf)
 		return (0);
-	rdlen = read(fd, buff, fsize);
-	buff[fsize] = 0;
+	rdlen = read(fd, buf, fsize);
+	buf[fsize] = 0;
 	if (rdlen <= 0)
-		return (free(buff), 0);
+		return (free(buf), 0);
 	close(fd);
 	for (i = 0; i < fsize; i++)
-		if (buff[i] == '\n')
+		if (buf[i] == '\n')
 		{
-			buff[i] = 0;
-			build_history_list(info, buff + last, linecount++);
+			buf[i] = 0;
+			build_history_list(info, buf + last, linecount++);
 			last = i + 1;
 		}
 	if (last != i)
-		build_history_list(info, buff + last, linecount++);
-	free(buff);
+		build_history_list(info, buf + last, linecount++);
+	free(buf);
 	info->histcount = linecount;
 	while (info->histcount-- >= HIST_MAX)
 		delete_node_at_index(&(info->history), 0);
@@ -105,18 +105,18 @@ int read_history(inf_t *info)
 /**
  * build_history_list - adds entry to a history linked list
  * @info: Structure containing potential arguments. Used to maintain
- * @buff: bufffer
+ * @buf: buffer
  * @linecount: the history linecount, histcount
  *
  * Return: Always 0
  */
-int build_history_list(inf_t *info, char *buff, int linecount)
+int build_history_list(info_type *info, char *buf, int linecount)
 {
 	list_type *node = NULL;
 
 	if (info->history)
 		node = info->history;
-	add_node_end(&node, buff, linecount);
+	add_node_end(&node, buf, linecount);
 
 	if (!info->history)
 		info->history = node;
@@ -129,7 +129,7 @@ int build_history_list(inf_t *info, char *buff, int linecount)
  *
  * Return: the new histcount
  */
-int renumber_history(inf_t *info)
+int renumber_history(info_type *info)
 {
 	list_type *node = info->history;
 	int i = 0;
