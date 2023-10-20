@@ -1,45 +1,45 @@
-#include "shell.h"
+#include "main.h"
 
 /**
- * _myenv - prints the current environment
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- * Return: Always 0
+ * _myenv - Print environment variables.
+ * @info: A pointer to the info_type structure containing environment variables.
+ *
+ * Return: Always returns 0 to indicate success.
  */
 int _myenv(info_type *info)
 {
-	print_list_str(info->env);
+	print_environment_variables(info->env);
 	return (0);
 }
 
 /**
- * _getenv - gets the value of an environ variable
- * @info: Structure containing potential arguments. Used to maintain
- * @name: env var name
+ * _getenv - Retrieve the value of an environment variable.
+ * @info: A pointer to the info_type structure containing environment variables.
+ * @name: The name of the environment variable to retrieve.
  *
- * Return: the value
+ * Return: A pointer to the value of the environment variable,
+ *         or NULL if not found.
  */
 char *_getenv(info_type *info, const char *name)
 {
 	list_type *node = info->env;
-	char *p;
+	char *variable_value;
 
 	while (node)
 	{
-		p = starts_with(node->str, name);
-		if (p && *p)
-			return (p);
+		variable_value = starts_with(node->str, name);
+		if (variable_value && *variable_value)
+			return (variable_value);
 		node = node->next;
 	}
 	return (NULL);
 }
 
 /**
- * _mysetenv - Initialize a new environment variable,
- *             or modify an existing one
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- *  Return: Always 0
+ * _mysetenv - Set or modify an environment variable.
+ * @info: A pointer to the info_type structure containing environment variables.
+ *
+ *  Return: 0 on success, 1 on failure.
  */
 int _mysetenv(info_type *info)
 {
@@ -54,39 +54,39 @@ int _mysetenv(info_type *info)
 }
 
 /**
- * _myunsetenv - Remove an environment variable
- * @info: Structure containing potential arguments. Used to maintain
- *        constant function prototype.
- *  Return: Always 0
+ * _myunsetenv - Unset one or more environment variables.
+ * @info: A pointer to the info_type structure containing environment variables.
+ *
+ *  Return: 0 on success, 1 on failure.
  */
 int _myunsetenv(info_type *info)
 {
-	int i;
+	int arg_index;
 
 	if (info->argc == 1)
 	{
 		_eputs("Too few arguements.\n");
 		return (1);
 	}
-	for (i = 1; i <= info->argc; i++)
-		_unsetenv(info, info->argv[i]);
+	for (arg_index = 1; arg_index <= info->argc; arg_index++)
+		_unsetenv(info, info->argv[arg_index]);
 
 	return (0);
 }
 
 /**
- * populate_env_list - populates env linked list
- * @info: Structure containing potential arguments. Used to maintain
- *          constant function prototype.
- * Return: Always 0
+ * populate_env_list - Populate the environment variables list.
+ * @info: A pointer to the info_type structure containing environment variables.
+ *
+ * Return: Always returns 0 to indicate success.
  */
 int populate_env_list(info_type *info)
 {
-	list_type *node = NULL;
-	size_t i;
+	list_type *env_list = NULL;
+	size_t index;
 
-	for (i = 0; environ[i]; i++)
-		add_node_end(&node, environ[i], 0);
-	info->env = node;
+	for (index = 0; environ[index]; index++)
+		add_node_end(&env_list, environ[index], 0);
+	info->env = env_list;
 	return (0);
 }

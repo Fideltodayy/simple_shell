@@ -1,0 +1,68 @@
+.TH CISFUN 1 "21 September 2023" "1.0" "CisFun Shell Manual"
+.SH NAME
+.B CisFun
+- A Simple UNIX Command Line Interpreter.
+.SH SYNOPSIS
+.B CisFun
+[OPTIONS] [SCRIPT]
+.SH DESCRIPTION
+The
+.B CisFun
+shell is a lightweight UNIX command line interpreter. It reads and executes commands from the standard input or a specified script file.
+.PP
+CisFun is designed for simplicity and ease of use, making it suitable for basic scripting and interactive use.
+.SH OPTIONS
+The following options are supported by
+.B CisFun:
+.PP
+.TP
+.B -h, --help
+Display a help message and exit.
+.TP
+.B -v, --version
+Display the version information.
+.SH USAGE
+To start the
+.B CisFun
+shell interactively, simply run:
+.PP
+.B
+$ CisFun
+.PP
+To execute commands from a script file, use:
+.PP
+.B
+$ CisFun scriptfile
+.PP
+To exit the shell, type:
+.PP
+.B
+$ exit
+.SH BUILT-INS
+The following built-in commands are supported by the
+.B CisFun
+shell:
+.PP
+.TP
+.B env
+Print the current environment variables.
+.TP
+.B setenv VARIABLE VALUE
+Initialize a new environment variable or modify an existing one.
+.TP
+.B unsetenv VARIABLE
+Remove an environment variable.
+.SH RETURN VALUE
+The
+.B CisFun
+shell exits with a status of 0 on successful execution of commands. Non-zero status may be returned in case of errors.
+.SH SEE ALSO
+.I sh(1)
+.SH BUGS
+There are currently no known bugs in the
+.B CisFun
+shell. If you encounter any issues, please report them to the author.
+.SH AUTHOR
+CisFun was created by Michael Adesina and Olanrewaju Awoyemi.
+.PP
+For updates and support, visit the official CisFun website.
